@@ -1,39 +1,46 @@
-import React from 'react';
-import Haeader from "./header";
-import Addcontact from './addcontact';
-import Contactlist from './contactlist';
+import React,{useState} from 'react';
 import './App.css';
 
 function App() {
 
-   const contacts = [
+   const [name,setname] = useState("mani");
+   const [flag,setflag] = useState(false);
+   const [steps,setsteps] = useState(0);
+  const changeName = () =>
+  {
+      console.log("name is changed");
+      return setname("messi");
+  }
 
-      {
-         id:10,
-         name:"manikanta",
-         place:"hyderabad",
-      },
+  const AppearName = () =>
+  {
+      console.log("name is appeared");
+      return setflag(!flag);
+  }
 
-      {
-        id:11,
-        name:"messi",
-        place:"argentina",
+  const Increment = () =>
+  {
+      return setsteps(steps + 1);
+  }
 
-      }
-
-
-   ]
-
+  const Decrement = () =>
+  { 
+    setsteps((prevstate) => prevstate - 1);
+    setsteps((prevstate) => prevstate - 1);
+  }
 
   return (
-    <div className='ui cointainer'>
-     <Haeader/>
-     <br/>
-     <br/>
-     <Addcontact/>
-     <br/>
-     <Contactlist contacts = {contacts} />
-     </div>
+    <div>
+      <div>Hello,{name}</div>
+      <button onClick={changeName}> Click Me</button>
+      <div>Hello,{flag ? name:""}</div>
+      <button onClick={AppearName}>Click Here</button>
+      <br/>
+      <br/>
+      <button onClick={Increment}>Increment</button>
+      <div>Value,{steps}</div>
+      <button onClick={Decrement}>Decrement</button>
+    </div>
   );
 }
 
